@@ -1,0 +1,24 @@
+
+service: example-micronaut-groovy
+
+provider:
+  name: aws
+  runtime: java8
+  # memorySize: 128
+
+package:
+  artifact: build\libs\micronaut-groovy-0.1-all.jar
+
+functions:
+  example-micronaut-groovy:
+    handler: geecon.micronaut.ExampleFunction::example
+    events:
+      - http:
+          path: example-micronaut-groovy
+          method: get
+          integration: lambda
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            template: $input.path('$')
+

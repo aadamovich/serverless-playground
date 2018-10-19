@@ -1,0 +1,8 @@
+micronaut:
+    function:
+        name: example
+aws:
+    lambda:
+        functions:
+            example:
+                functionName: example   

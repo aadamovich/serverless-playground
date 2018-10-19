@@ -1,0 +1,23 @@
+
+service: example-plain-java 
+
+provider:
+  name: aws
+  runtime: java8
+
+package:
+  artifact: build/distributions/plain-java.zip
+
+functions:
+  example-plain-java:
+    handler: com.serverless.Handler
+    events:
+      - http:
+          path: example-plain-java
+          method: get
+          integration: lambda
+          response:
+            headers:
+              Content-Type: "'application/json'"
+            template: $input.path('$')
+
